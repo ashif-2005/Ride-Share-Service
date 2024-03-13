@@ -3,12 +3,14 @@ const db = require('mongoose')
 const parser = require('body-parser')
 const {Ride} = require('./schema') 
 const { Login } = require('./login')
+const cors = require('cors')
 
-const port = 8000
+const port = process.env.PORT || 8000
 const url = "mongodb+srv://Mohammed_Ashif:Ashif2005@cluster0.whqaznv.mongodb.net/RideDb?retryWrites=true&w=majority&appName=Cluster0"
 
 const app = express()
 app.use(parser.json())
+app.use(cors())
 
 app.get('/getData',async (req,res)=>{
     try{
