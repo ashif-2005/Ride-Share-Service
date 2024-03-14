@@ -94,7 +94,7 @@ app.post('/findData',async (req,res)=>{
 
 app.patch('/edit',async (req,res)=>{
     try{
-        const data = await Expense.findById(req.body.id)
+        const data = await Ride.findById(req.body.id)
         if(data){
             await data.updateOne({
                 "totalRide":req.body.totalRide+1
