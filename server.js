@@ -92,6 +92,29 @@ app.post('/findData',async (req,res)=>{
     }
 })
 
+app.patch('/edit',async (req,res)=>{
+    try{
+        const data = await Expense.findById(req.body.id)
+        if(data){
+            await data.updateOne({
+                "totalRide":req.body.totalRide+1
+            })
+            res.status(200).json({
+                "status":"Data Updated Succcessfull"
+            })
+        }
+        else{
+            res.status(404).json({
+                "status":"Could not find document"
+            })
+        }
+    }catch(error){
+        res.status(500).json({
+            "status":"Some internal issue"
+        })
+    }
+})
+
 async function connectToDb(){
     try{
      await db.connect(url)
